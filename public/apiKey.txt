@@ -1,0 +1,3 @@
+GET https://newsapi.org/v2/everything?q=bitcoin&apiKey=54998c18f7c44486be8e32bfba99389f
+
+https://newsapi.org/v2/top-headlines?country=us&apiKey=54998c18f7c44486be8e32bfba99389f&page=1
