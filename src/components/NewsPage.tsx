@@ -45,7 +45,7 @@ const handleScroll = () => {
     const fetchNews = async (page: number) => {
 
         setLoading(true);
-
+        //todo: if have added setPage(page+1) here then it will take time as its asysc fuction
         props.setStateProgress(10);
 
         const URL =
@@ -77,6 +77,8 @@ const handleScroll = () => {
             await fetchNews(currentPage);
         };
         loadData();
+        //! this down comment is some kind
+        // eslint-disable-next-line 
         window.addEventListener("scroll", handleScroll);
 
         document.title = `News Monkey - ${props.category}`;
@@ -96,7 +98,7 @@ const handleScroll = () => {
         return (
             <div className='container my-3'>
                 <div>
-                    <h2 className='text-center'> Top Headlines - On {props.category} </h2>
+                    <h2 className='text-center' style={{ marginTop: '60px' }}>Top Headlines - On {props.category} </h2>
                 </div>
 
                 <div className="row">

@@ -21,11 +21,6 @@ const apiKey = import.meta.env.VITE_NEWS_API_KEY;
 const App = ()=>{
 
   const [progress, setProgress] = useState(10);
-  
-  const setLoadingProgress = (progress :number) =>{
-    setProgress(progress)
-  }
-
 
     return (
       <>
@@ -44,7 +39,7 @@ const App = ()=>{
                 path="/" 
                 element={
                   <NewsPage
-                    setStateProgress={setLoadingProgress}
+                    setStateProgress={setProgress}
                     key="general"
                     pageSize={10}
                     country="us"
@@ -58,7 +53,7 @@ const App = ()=>{
                 path="/business" 
                 element={
                   <NewsPage
-                    setStateProgress={setLoadingProgress}
+                    setStateProgress={setProgress}
                     key="business"
                     pageSize={10}
                     country="us"
@@ -72,7 +67,7 @@ const App = ()=>{
                 path="/sports" 
                 element={
                   <NewsPage
-                    setStateProgress={setLoadingProgress}
+                    setStateProgress={setProgress}
                     key="sports"
                     pageSize={10}
                     country="us"

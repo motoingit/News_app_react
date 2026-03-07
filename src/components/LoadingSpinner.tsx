@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import loading from "../../public/loading_Img.gif"
 
 const LoadingSpinner = ()=> {
