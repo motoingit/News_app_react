@@ -1,6 +1,6 @@
 
 import './App.css'
-import { Component } from 'react'
+import { Component, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import NewsPage from './components/NewsPage'
@@ -18,23 +18,15 @@ const nCategory = [
 
 const apiKey = import.meta.env.VITE_NEWS_API_KEY;
 
-interface AppState {
-  progress:number
-}
+const App = ()=>{
 
-//Todo: when receive then we  write like this
-// export default class App extends Component <{}, AppProps> { 
-export default class App extends  Component<{}, AppState>{
-
-  state = {
-    progress:0 
-  }
+  const [progress, setProgress] = useState(10);
   
-  setStateProgress = (progress:number) =>{
-    this.setState({progress})
+  const setLoadingProgress = (progress :number) =>{
+    setProgress(progress)
   }
 
-  render() { 
+
     return (
       <>
         <Router>
@@ -42,7 +34,7 @@ export default class App extends  Component<{}, AppState>{
           <LoadingBar
             height={3}
             color="#f11946"
-            progress={this.state.progress}
+            progress={progress}
           />
 
           <div className="container my-3">
@@ -52,7 +44,7 @@ export default class App extends  Component<{}, AppState>{
                 path="/" 
                 element={
                   <NewsPage
-                    setStateProgress={this.setStateProgress}
+                    setStateProgress={setLoadingProgress}
                     key="general"
                     pageSize={10}
                     country="us"
@@ -66,7 +58,7 @@ export default class App extends  Component<{}, AppState>{
                 path="/business" 
                 element={
                   <NewsPage
-                    setStateProgress={this.setStateProgress}
+                    setStateProgress={setLoadingProgress}
                     key="business"
                     pageSize={10}
                     country="us"
@@ -80,7 +72,7 @@ export default class App extends  Component<{}, AppState>{
                 path="/sports" 
                 element={
                   <NewsPage
-                    setStateProgress={this.setStateProgress}
+                    setStateProgress={setLoadingProgress}
                     key="sports"
                     pageSize={10}
                     country="us"
@@ -96,5 +88,10 @@ export default class App extends  Component<{}, AppState>{
         </Router>
       </>
     );
+
+  interface App {
+    progress:number
   }
 }
+
+export default App;

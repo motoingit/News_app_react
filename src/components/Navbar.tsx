@@ -3,10 +3,7 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-export class Navbar extends Component<NavbarProp> {
-
-  render() {
-
+const Navbar = ({ arrCategory }: NavbarProps) => {
     return (
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
@@ -49,7 +46,10 @@ export class Navbar extends Component<NavbarProp> {
         </div>
       </nav>
     )
-  }
+}
+
+interface NavbarProps{
+  arrCategory: string[];
 }
 
 export default Navbar

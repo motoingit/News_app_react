@@ -1,38 +1,30 @@
-import { Component } from 'react'
+import React ,{ useEffect, useState} from 'react' //! wy not showinfg
 import NewsCard from './NewsCard'
+
 import Spinner from './LoadingSpinner'
 
-interface NewsPageDataState {
-  articles: any[];
-  loading: boolean;
-  currentPage: number;
-  totalApiRes: number;
-}
+const NewsPage = (props: any)=> {
 
-//! static proptypes is 
-interface NewsPageProps {
-  pageSize: number;
-  country: string;
-  category: string;
-  setStateProgress: (progress: number) => void;
-  apiKey: string;
-}
+    const [articles, setArticles] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1); //* page is 1 by def
+    const [totalApiRes, setTotalApiRes] = useState(0);
 
-export class NewsPage extends Component<NewsPageProps, NewsPageDataState> {
+    /* //! revomended
+    
+let scrollTimeout;
 
-    constructor(props: NewsPageProps) {
-        super(props);
-        // console.log("News Item Cons from news-page");
-        this.state = {
-            articles: [],
-            loading: false,
-            currentPage: 1,
-            totalApiRes: 0,
-        };
-    };
+const handleScroll = () => {
+    if (scrollTimeout) return;
 
-    handleScroll = () => {
-        const { loading, currentPage: page, totalApiRes } = this.state;
+    scrollTimeout = setTimeout(() => {
+        // logic
+        scrollTimeout = null;
+    }, 200);
+};
+    */
+
+    const handleScroll = ()=>{
 
         if (loading) return;
 
@@ -40,60 +32,63 @@ export class NewsPage extends Component<NewsPageProps, NewsPageDataState> {
 
         if (bottom){
 
-            const totalPages = Math.ceil(totalApiRes / this.props.pageSize);
+            const totalPages = Math.ceil(totalApiRes / props.pageSize);
 
-            if (page < totalPages) {
-                this.fetchNews(page + 1);
+            if (currentPage < totalPages) {
+                fetchNews(currentPage + 1);
             }
         }
     };
 
     
     // centralized API call
-    fetchNews = async (page: number) => {
+    const fetchNews = async (page: number) => {
 
-        this.setState({ loading: true });
+        setLoading(true);
 
-        this.props.setStateProgress(10);
+        props.setStateProgress(10);
 
         const URL =
             `${import.meta.env.VITE_NEWS_API_URL}` +
-            `&country=${this.props.country}` +
-            `&category=${this.props.category}` +
-            `&apiKey=${this.props.apiKey}` +
+            `&country=${props.country}` +
+            `&category=${props.category}` +
+            `&apiKey=${props.apiKey}` +
             `&page=${page}` +
-            `&pageSize=${this.props.pageSize}`;
+            `&pageSize=${props.pageSize}`;
 
         const data = await fetch(URL);
 
-        this.props.setStateProgress(40);
+        props.setStateProgress(40);
 
         const parsedData = await data.json();
 
-        this.props.setStateProgress(70);
+        props.setStateProgress(70);
 
-        this.setState((prevState) => ({
-            articles: prevState.articles.concat(parsedData.articles),
-            totalApiRes: parsedData.totalResults,
-            currentPage: page,
-            loading: false
-        }));
+        setArticles((prevArticles) => prevArticles.concat(parsedData.articles))
+        setTotalApiRes(parsedData.totalResults);
+        setCurrentPage(page);
+        setLoading(false);
 
-        this.props.setStateProgress(100);
+        props.setStateProgress(100);
     };
-    
-    async componentDidMount(): Promise<void> {
-        await this.fetchNews(this.state.currentPage);
-        window.addEventListener("scroll", this.handleScroll);
-        document.title = `News Monkey - ${this.props.category}` 
-    }
 
-    componentWillUnmount(): void {
-        window.removeEventListener("scroll", this.handleScroll);
-    }
+    useEffect(()=>{
+        const loadData = async () => {
+            await fetchNews(currentPage);
+        };
+        loadData();
+        window.addEventListener("scroll", handleScroll);
+
+        document.title = `News Monkey - ${props.category}`;
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+
+
+    }, []) //TODO why empty arrary - ye khali array jiske change pe ye effect run hora vo hai
 
     //! NEWS URL AND IMG URL UNDEFINE
-    render() {
 
         //*no nned of  destructure
         // const {articles, loading} = this.state;
@@ -101,12 +96,12 @@ export class NewsPage extends Component<NewsPageProps, NewsPageDataState> {
         return (
             <div className='container my-3'>
                 <div>
-                    <h2 className='text-center'> Top Headlines - On {this.props.category} </h2>
+                    <h2 className='text-center'> Top Headlines - On {props.category} </h2>
                 </div>
 
                 <div className="row">
                     {/* this is genrated*/}
-                    {this.state.articles.map((article: any, index:number) => (
+                    {articles.map((article: any, index:number) => (
                         <div className="col-md-4 mb-4"  key={index}>
                             <NewsCard
                             title={article.title == null ? "No Title Available" : article.title.slice(0,50)}
@@ -122,10 +117,16 @@ export class NewsPage extends Component<NewsPageProps, NewsPageDataState> {
                 </div>
 
                 {/*  &&(<p className="text-center">Loading...</p>)   */}
-                {this.state.loading ==true && <Spinner/> }
+                {loading ==true && <Spinner/> }
             </div>
         )
-    }
+}
+
+interface NewsPageDataState {
+  articles: any[];
+  loading: boolean;
+  currentPage: number;
+  totalApiRes: number;
 }
 
 export default NewsPage;

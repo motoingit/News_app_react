@@ -1,28 +1,9 @@
-import { Component } from 'react'
-// import PropTypes from 'prop-types'
+import React from "react";
 
-interface NewsCardProps {
-  title: string;
-  description: string;
-  img_url: string;
-  news_url: string;
-  author: string,
-  date:string,
-  source: string,
-}
-
-//TODO IMPROVE CSS OF CARD
-
-export class NewsCard extends Component <NewsCardProps> {
-
-    constructor(props: NewsCardProps){
-        super(props);
-        // console.log("News Item Cons");
-    }
+const NewsCard = (props: any)=> {
 
     //! news url in not coded
-    render() {
-      let { title, description , img_url, news_url, author, date, source} = this.props;
+      let { title, description , img_url, news_url, author, date, source} = props;
 
       return (
         <div className="my-3">
@@ -81,7 +62,6 @@ export class NewsCard extends Component <NewsCardProps> {
 
         </div>
     )
-  }
 }
 
 export default NewsCard
