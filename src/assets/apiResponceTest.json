@@ -1,0 +1,129 @@
+/* 
+
+https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=54998c18f7c44486be8e32bfba99389f&page=1&pageSize=10
+
+*/
+
+{
+  "status": "ok",
+  "totalResults": 34,
+  "articles": [
+    {
+      "source": {
+        "id": null,
+        "name": "News On 6"
+      },
+      "author": null,
+      "title": "Live Updates: 2 dead as severe storms bring hail, damaging winds and tornado risk to northeast Oklahoma - News On 6",
+      "description": "A Tornado Watch is active for parts of Green Country until 4 a.m.",
+      "url": "https://www.newson6.com/oklahoma-severe-weather-live-updates",
+      "urlToImage": "https://cdn.griffin.news/dims4/default/0d84801/2147483647/strip/true/crop/1536x864+0+592/resize/1440x810!/format/webp/quality/90/?url=https%3A%2F%2Fgriffin-media-production-griffin.s3.us-east-2.amazonaws.com%2Fbrightspot%2Fd1%2F95%2Ff1875d3b465a997724bcd8b771f2%2Fbristowtornadodamage-6.jpg",
+      "publishedAt": "2026-03-07T05:40:49Z",
+      "content": "Severe Thunderstorm Warning for Adair, Cherokee, Sequoyah County until 1:15 a.m.\r\nA Severe Thunderstorm Warning has been issued for Adair, Cherokee, and Sequoyah County until 1:15 a.m.\r\nSevere Thunde… [+9500 chars]"
+    },
+    {
+      "source": {
+        "id": "espn",
+        "name": "ESPN"
+      },
+      "author": null,
+      "title": "No. 19 Miami (Ohio) caps undefeated regular season with OT win - ESPN",
+      "description": "Miami (Ohio) finished the regular season as the only unbeaten team in Division I men's basketball, winning 110-108 in overtime over Ohio on Friday night.",
+      "url": "https://www.espn.com/mens-college-basketball/story/_/id/48128883/no-19-miami-ohio-caps-undefeated-regular-season-ot-win",
+      "urlToImage": "https://a.espncdn.com/combiner/i?img=%2Fphoto%2F2026%2F0307%2Fr1624561_1296x729_16%2D9.jpg",
+      "publishedAt": "2026-03-07T05:08:00Z",
+      "content": "Mar 7, 2026, 12:08 AM ET\r\nATHENS, Ohio -- Miami (Ohio) finished the regular season as the only unbeaten team in Division I men's basketball thanks to Eian Elmer scoring a career-high 32 points and gr… [+1401 chars]"
+    },
+    {
+      "source": {
+        "id": "the-washington-post",
+        "name": "The Washington Post"
+      },
+      "author": "Greg Miller, Alex Horton",
+      "title": "Unprepared for Iranian drones, U.S. and partners seek Ukraine’s help - The Washington Post",
+      "description": "Swarms of low-cost drones used by the Russians in Ukraine have been breaching U.S. air defense systems and striking targets across the Middle East.",
+      "url": "https://www.washingtonpost.com/national-security/2026/03/06/us-unprepared-iran-drones-ukraine/",
+      "urlToImage": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/7MXTVXIH5DA5OVNJ57WB3GY4BA_size-normalized.JPG&w=1440",
+      "publishedAt": "2026-03-07T04:53:36Z",
+      "content": "The Trump administration, which has expressed frequent exasperation with all that has been asked of it by Ukraine, had an urgent request of its own this week.\r\nWith swarms of Iranian drones breaching… [+204 chars]"
+    },
+    {
+      "source": {
+        "id": "the-verge",
+        "name": "The Verge"
+      },
+      "author": "Sean Hollister",
+      "title": "DJI will pay $30K to the man who accidentally hacked 7,000 Romo robovacs - The Verge",
+      "description": "DJI will pay Sammy Azdoufal $30,000 after he used Claude Code to accidentally access a network of 7,000 robot vacuums.",
+      "url": "https://www.theverge.com/news/890982/dji-pay-sammy-azdoufal-robot-vacuum-hack-romo-security",
+      "urlToImage": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/07/romo.jpg?quality=90&strip=all&crop=0%2C10.719532078152%2C100%2C78.560935843696&w=1200",
+      "publishedAt": "2026-03-07T02:59:00Z",
+      "content": "<ul><li></li><li></li></ul>\r\n$30,000 for the man who tapped into DJIs robot network.\r\n$30,000 for the man who tapped into DJIs robot network.\r\nby\r\nSean HollisterClose\r\nPosts from this author will be … [+3455 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Honolulu Star-Advertiser"
+      },
+      "author": "Nina Wu",
+      "title": "Neiman Marcus store at Ala Moana Center to close - Honolulu Star-Advertiser",
+      "description": "Saks Global is closing the Neiman Marcus department store at Ala Moana Center as part of ongoing restructuring efforts, the luxury retailer said in a news release today.",
+      "url": "https://www.staradvertiser.com/2026/03/06/breaking-news/neiman-marcus-store-to-close-at-ala-moana-center/",
+      "urlToImage": "https://www.staradvertiser.com/wp-content/uploads/2026/03/web1_20260306_WEB_Neiman-Marcus.jpeg",
+      "publishedAt": "2026-03-07T02:55:30Z",
+      "content": "Saks Global is closing the Neiman Marcus department store at Ala Moana Center as part of ongoing restructuring efforts, the luxury retailer said in a news release today.\r\nThe company, which filed for… [+2659 chars]"
+    },
+    {
+      "source": {
+        "id": "espn",
+        "name": "ESPN"
+      },
+      "author": "Jamison Hensley",
+      "title": "Sources: Raiders to trade Maxx Crosby to Ravens for two 1sts - ESPN",
+      "description": "The Ravens have won the Maxx Crosby sweepstakes, beating out the Cowboys and others by sending 2026 and 2027 first-round picks to the Raiders for the star pass rusher, sources told ESPN's Adam Schefter.",
+      "url": "https://www.espn.com/nfl/story/_/id/48127564/sources-raiders-trade-maxx-crosby-ravens-two-1sts",
+      "urlToImage": "https://a4.espncdn.com/combiner/i?img=%2Fphoto%2F2026%2F0217%2Fr1616429_1296x729_16%2D9.jpg",
+      "publishedAt": "2026-03-07T02:23:00Z",
+      "content": "OWINGS MILLS, Md. -- In the biggest trade in franchise history, the Baltimore Ravens are acquiring five-time Pro Bowl defensive end Maxx Crosby from the Las Vegas Raiders for first-round picks in 202… [+5602 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "NBCSports.com"
+      },
+      "author": "Mike Florio",
+      "title": "President Trump plans to sign executive order to \"save college sports\" - NBC Sports",
+      "description": "At a time when there are far more important issues to address (one in particular), President Trump devoted time on Friday afternoon to a \"Saving College Sports\" roundtable.",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/president-trump-plans-to-sign-executive-order-to-save-college-sports",
+      "urlToImage": "https://nbcsports.brightspotcdn.com/dims4/default/1734786/2147483647/strip/true/crop/5504x3096+0+286/resize/1440x810!/quality/90/?url=https%3A%2F%2Fnbc-sports-production-nbc-sports.s3.us-east-1.amazonaws.com%2Fbrightspot%2F60%2F61%2F85114ebe4b60bf22e308fda669c1%2Fhttps-delivery-gettyimages.com%2Fdownloads%2F2265162024",
+      "publishedAt": "2026-03-07T01:58:48Z",
+      "content": "At a time when there are far more important issues to address (one in particular), President Trump devoted time on Friday afternoon to a Saving College Sports roundtable.\r\nVia Heather Dinich of ESPN,… [+2832 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "TMZ"
+      },
+      "author": "TMZ Staff",
+      "title": "Hailey Bieber Poses For Sexy Selfies In New Luscious Lip Thirst Traps - TMZ",
+      "description": "Hailey Bieber is feeling herself ... because she whipped out her camera and took a bunch of stunning selfies, and now she's sharing them with the world.",
+      "url": "https://www.tmz.com/2026/03/06/hailey-bieber-thirst-trap-selfies/",
+      "urlToImage": "https://imagez.tmz.com/image/6e/16by9/2026/03/07/6e74d170ce4d461fa0a1bfcb8e38d483_xl.png",
+      "publishedAt": "2026-03-07T01:58:20Z",
+      "content": "Hailey Bieber is feeling herself ... because she whipped out her camera and took a bunch of stunning selfies, and now she's sharing them with the world.\r\nCheck out this new thirst traps from the mode… [+479 chars]"
+    },
+    {
+      "source": {
+        "id": "the-washington-post",
+        "name": "The Washington Post"
+      },
+      "author": "Mark Berman",
+      "title": "Justice Dept. releases missing Epstein documents with Trump allegations - The Washington Post",
+      "description": "The agency said the records, which include allegations made against President Donald Trump in 2019, were not previously released because they were “ incorrectly coded.”",
+      "url": "https://www.washingtonpost.com/politics/2026/03/06/justice-department-epstein-documents-trump/",
+      "urlToImage": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/5CXRRD4QYV4DOGIVAEPG6KBUA4_size-normalized.jpg&w=1440",
+      "publishedAt": "2026-03-07T01:48:52Z",
+      "content": "The Justice Department on Thursday publicly posted additional records related to convicted sex offender Jeffrey Epstein, including some that include allegations against President Donald Trump, follow… [+55 chars]"
+    }
+  ]
+}

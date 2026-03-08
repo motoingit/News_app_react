@@ -1,134 +1,134 @@
-import React ,{ useEffect, useState} from 'react' //! wy not showinfg
+import { useEffect, useState, useCallback } from 'react'
 import NewsCard from './NewsCard'
-
 import Spinner from './LoadingSpinner'
 
-const NewsPage = (props: any)=> {
-
-    const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1); //* page is 1 by def
-    const [totalApiRes, setTotalApiRes] = useState(0);
-
-    /* //! revomended
-    
-let scrollTimeout;
-
-const handleScroll = () => {
-    if (scrollTimeout) return;
-
-    scrollTimeout = setTimeout(() => {
-        // logic
-        scrollTimeout = null;
-    }, 200);
-};
-    */
-
-    const handleScroll = ()=>{
-
-        if (loading) return;
-
-        const bottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 200;
-
-        if (bottom){
-
-            const totalPages = Math.ceil(totalApiRes / props.pageSize);
-
-            if (currentPage < totalPages) {
-                fetchNews(currentPage + 1);
-            }
-        }
-    };
-
-    
-    // centralized API call
-    const fetchNews = async (page: number) => {
-
-        setLoading(true);
-        //todo: if have added setPage(page+1) here then it will take time as its asysc fuction
-        props.setStateProgress(10);
-
-        const URL =
-            `${import.meta.env.VITE_NEWS_API_URL}` +
-            `&country=${props.country}` +
-            `&category=${props.category}` +
-            `&apiKey=${props.apiKey}` +
-            `&page=${page}` +
-            `&pageSize=${props.pageSize}`;
-
-        const data = await fetch(URL);
-
-        props.setStateProgress(40);
-
-        const parsedData = await data.json();
-
-        props.setStateProgress(70);
-
-        setArticles((prevArticles) => prevArticles.concat(parsedData.articles))
-        setTotalApiRes(parsedData.totalResults);
-        setCurrentPage(page);
-        setLoading(false);
-
-        props.setStateProgress(100);
-    };
-
-    useEffect(()=>{
-        const loadData = async () => {
-            await fetchNews(currentPage);
-        };
-        loadData();
-        //! this down comment is some kind
-        // eslint-disable-next-line 
-        window.addEventListener("scroll", handleScroll);
-
-        document.title = `News Monkey - ${props.category}`;
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-
-
-    }, []) //TODO why empty arrary - ye khali array jiske change pe ye effect run hora vo hai
-
-    //! NEWS URL AND IMG URL UNDEFINE
-
-        //*no nned of  destructure
-        // const {articles, loading} = this.state;
-        //! change now
-        return (
-            <div className='container my-3'>
-                <div>
-                    <h2 className='text-center' style={{ marginTop: '60px' }}>Top Headlines - On {props.category} </h2>
-                </div>
-
-                <div className="row">
-                    {/* this is genrated*/}
-                    {articles.map((article: any, index:number) => (
-                        <div className="col-md-4 mb-4"  key={index}>
-                            <NewsCard
-                            title={article.title == null ? "No Title Available" : article.title.slice(0,50)}
-                            description={article.description == null ? "No Description Available" : article.description.slice(0,150)}
-                            img_url={article.urlToImage ? article.urlToImage : "https://via.placeholder.com/300x200"}
-                            news_url={article.url ? article.url : "#"}
-                            author={article.author}
-                            date={new Date(article.publishedAt).toUTCString()}
-                            source={article.source.name}
-                            />
-                        </div>
-                    ))}
-                </div>
-
-                {/*  &&(<p className="text-center">Loading...</p>)   */}
-                {loading ==true && <Spinner/> }
-            </div>
-        )
+interface NewsPageProps {
+  category: string;
+  pageSize: number;
+  country: string;
+  apiKey: string;
+  setProgress: (progress: number) => void;
 }
 
-interface NewsPageDataState {
-  articles: any[];
-  loading: boolean;
-  currentPage: number;
-  totalApiRes: number;
+interface Article {
+  title: string;
+  description: string;
+  urlToImage: string;
+  url: string;
+  author: string | null;
+  publishedAt: string;
+  source: { name: string };
+}
+
+const NewsPage = ({ category, pageSize, country, apiKey, setProgress }: NewsPageProps) => {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
+
+  const fetchNews = useCallback(async (pageNum: number) => {
+    try {
+      setLoading(true);
+      setProgress(10);
+      const baseUrl = import.meta.env.VITE_NEWS_API_URL;
+      const url = `${baseUrl}country=${country}&category=${category}&apiKey=${apiKey}&page=${pageNum}&pageSize=${pageSize}`;
+      
+      const response = await fetch(url);
+      setProgress(40);
+      const data = await response.json();
+      setProgress(70);
+
+      if (pageNum === 1) {
+        setArticles(data.articles || []);
+      } else {
+        setArticles((prev) => [...prev, ...(data.articles || [])]);
+      }
+
+      setTotalResults(data.totalResults || 0);
+      setLoading(false);
+      setProgress(100);
+    } catch (error) {
+      console.error("Error fetching news:", error);
+      setLoading(false);
+      setProgress(100);
+    }
+  }, [category, country, apiKey, pageSize, setProgress]);
+
+  useEffect(() => {
+    setArticles([]);
+    setPage(1);
+    setLoading(true);
+    fetchNews(1);
+    document.title = `NewsMonkey - ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+  }, [category, fetchNews]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (loading || articles.length >= totalResults) return;
+
+      const buffer = 200;
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - buffer;
+
+      if (isAtBottom) {
+        const nextPage = page + 1;
+        setPage(nextPage);
+        fetchNews(nextPage);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading, articles.length, totalResults, page, fetchNews]);
+
+  return (
+    <div className="container py-5 mt-5">
+      <div className="row mb-5">
+        <div className="col-12 text-center">
+          <h1 className="display-4 fw-bold text-dark">
+            Top <span className="text-primary">Headlines</span>
+          </h1>
+          <p className="text-muted lead">
+            Stay updated with the latest news in <strong>{category}</strong>
+          </p>
+          <hr className="w-25 mx-auto border-primary border-2 opacity-75" />
+        </div>
+      </div>
+
+      <div className="row g-4">
+        {articles.map((article, index) => (
+          <div className="col-12 col-md-6 col-lg-4" key={`${article.url}-${index}`}>
+            <NewsCard
+              title={article.title || "No Title"}
+              description={article.description || "No description available for this article."}
+              img_url={article.urlToImage || "https://via.placeholder.com/600x400?text=News+Image"}
+              news_url={article.url || "#"}
+              author={article.author}
+              date={article.publishedAt}
+              source={article.source.name}
+            />
+          </div>
+        ))}
+      </div>
+
+      {loading && (
+        <div className="d-flex justify-content-center my-5 py-5">
+          <Spinner />
+        </div>
+      )}
+
+      {!loading && articles.length === 0 && (
+        <div className="text-center my-5 py-5">
+          <h3 className="text-muted">No news articles found.</h3>
+        </div>
+      )}
+
+      {articles.length >= totalResults && totalResults > 0 && (
+        <div className="text-center my-5 pt-4">
+          <p className="badge bg-secondary px-3 py-2 rounded-pill">You've reached the end of the news feed.</p>
+        </div>
+      )}
+    </div>
+  )
 }
 
 export default NewsPage;

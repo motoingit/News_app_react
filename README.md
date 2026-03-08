@@ -1,73 +1,58 @@
-# React + TypeScript + Vite
+# 🐒 NewsMonkey - Your Daily Dose of News
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NewsMonkey is a modern, responsive web application that fetches the latest news from around the world using the NewsAPI. It's built with React, TypeScript, and Bootstrap to provide a premium user experience with smooth infinite scrolling and category-based navigation.
 
-Currently, two official plugins are available:
+![NewsMonkey Screenshot](https://via.placeholder.com/800x450?text=NewsMonkey+Project+Preview)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- **Infinite Scrolling**: Automatically load more news as you scroll down.
+- **Category Navigation**: Explore news in Business, Entertainment, Health, Science, Sports, and Technology.
+- **Top Headlines**: Get the most important stories first.
+- **Responsive Design**: Optimized for mobile, tablet, and desktop views using modern Bootstrap 5 utilities.
+- **Top Loading Bar**: Visual progress indicator for API fetches.
+- **Premium UI**: Clean cards with hover effects, shadow utilities, and modern typography.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## 🚀 Tech Stack
 
-## Expanding the ESLint configuration
+- **React**: Frontend library for building the UI.
+- **TypeScript**: Ensuring type safety and better developer experience.
+- **Bootstrap 5**: Responsive styling and UI components.
+- **React Router**: Seamless navigation between categories.
+- **React Top Loading Bar**: Sleek progress bar at the top of the page.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Setup and Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd NewsMonkey_1
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+3. **Environment Variables**:
+   Create a `.env` file in the root directory and add your NewsAPI key:
+   ```env
+   VITE_NEWS_API_KEY=your_api_key_here
+   VITE_NEWS_API_URL=https://newsapi.org/v2/top-headlines?
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+4. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📈 Scalability Improvements
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **TypeScript Migration**: Removed all `any` types and implemented proper interfaces for props, states, and API responses.
+- **Component Optimization**: Refactored functional components with hooks like `useCallback` for optimized re-renders.
+- **Refined Bootstrap**: Used advanced Bootstrap utilities for layout, spacing, and shadows to eliminate bulkier custom CSS.
+- **Clean Code**: Standardized naming conventions (e.g., constants in SCREAMING_SNAKE_CASE) and removed redundant logic.
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
